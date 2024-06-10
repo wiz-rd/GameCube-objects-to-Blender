@@ -5,7 +5,10 @@
 #include <cstdlib>
 #include <string>
 #include <unistd.h>
+
+// added by wiz-rd for compatibility with Linux
 #include <sys/stat.h>
+
 #include <iostream>
 using namespace std;
 
@@ -132,6 +135,8 @@ FileEntry getFileEntry(int i, const RarcHeader& h, FILE* f)
 void dumpNode(const Node& n, const RarcHeader& h, FILE* f)
 {
   string nodeName = getString(n.filenameOffset + h.stringTableOffset + 0x20, f);
+  
+  // (mkdir and chdir) modified by wiz-rd for compatibility with Linux
   mkdir(nodeName.c_str(), 0777);
   chdir(nodeName.c_str());
 
@@ -163,6 +168,7 @@ void dumpNode(const Node& n, const RarcHeader& h, FILE* f)
     }
   }
 
+  // modified by wiz-rd for compatibility with Linux
   chdir("..");
 }
 
@@ -198,12 +204,15 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
 
   string dirName = argv[1] + string("_dir");
+  // (mkdir and chdir) modified by wiz-rd for compatibility with Linux
   mkdir(dirName.c_str(), 0777);
   chdir(dirName.c_str());
 
   readFile(f);
 
+  // (chdir) modified by wiz-rd for compatibility with Linux
   chdir("..");
+
   fclose(f);
 
   return EXIT_SUCCESS;
