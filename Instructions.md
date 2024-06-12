@@ -44,8 +44,6 @@ You'll now need to convert the newly-extracted .bmd files to .dae files so Blend
   
   `wine SuperBMD.exe <input file>`
 
-
-
 The files will be outputted to the same directory as the input file. It's kind of annoying, I know, but I tried putting `-i <input file> -o <output folder>` but that did not work, at least for me on Linux.
 
 ## Open .DAE with Blender
@@ -53,6 +51,12 @@ The files will be outputted to the same directory as the input file. It's kind o
 Just open [Blender](https://www.blender.org/), click **import**, and select **.dae**.
 
 There's a very high chance you'll have to scale down the model dramatically in order to be able to see it. Press "**.**" on your numpad to zoom up to it (this will not work if it's too large).
+
+## Extract audio
+
+Say you want to celebrate your successful importing of a .bmd into Blender with a little jig. How would you go about playing the audio? Well, [vgmstream](https://github.com/vgmstream/vgmstream) has you covered. It lets you convert almost any video game audio to somethign playable in the modern age, typically a `.wav` file. It's very simple to use, assuming you have the CLI version. I can't speak to the Windows version directly, but I imagine it's similar.
+
+`vgmstream-cli [(optional) -o <output_path.wav>] <file_path>` is all you need to start jamming out. Bear in mind, the converted audio will output alongside the original file unless specified.
 
 # Resources
 
